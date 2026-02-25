@@ -1,0 +1,70 @@
+volumes:
+  expense_tracker_local_postgres_data: {}
+  expense_tracker_local_postgres_data_backups: {}
+  expense_tracker_local_redis_data: {}
+
+services:
+  django: &django
+    build:
+      context: .
+      dockerfile: ./compose/local/django/Dockerfile
+    image: expense_tracker_local_django
+    container_name: expense_tracker_local_django
+    depends_on:
+      - postgres
+      - redis
+    volumes:
+      - /app/.venv
+      - .:/app:z
+    env_file:
+      - ./.envs/.local/.django
+      - ./.envs/.local/.postgres
+    ports:
+      - '8000:8000'
+    command: /start
+
+  postgres:
+    build:
+      context: .
+      dockerfile: ./compose/production/postgres/Dockerfile
+    image: expense_tracker_production_postgres
+    container_name: expense_tracker_local_postgres
+    volumes:
+      - expense_tracker_local_postgres_data:/var/lib/postgresql/18/docker
+      - expense_tracker_local_postgres_data_backups:/backups
+    env_file:
+      - ./.envs/.local/.postgres
+
+  redis:
+    image: docker.io/redis:7.2
+    container_name: expense_tracker_local_redis
+    volumes:
+      - expense_tracker_local_redis_data:/data
+
+  celeryworker:
+    <<: *django
+    image: expense_tracker_local_celeryworker
+    container_name: expense_tracker_local_celeryworker
+    depends_on:
+      - redis
+      - postgres
+    ports: []
+    command: /start-celeryworker
+
+  celerybeat:
+    <<: *django
+    image: expense_tracker_local_celerybeat
+    container_name: expense_tracker_local_celerybeat
+    depends_on:
+      - redis
+      - postgres
+    ports: []
+    command: /start-celerybeat
+
+  flower:
+    <<: *django
+    image: expense_tracker_local_flower
+    container_name: expense_tracker_local_flower
+    ports:
+      - '5555:5555'
+    command: /start-flower

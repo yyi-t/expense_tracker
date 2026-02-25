@@ -1,0 +1,7 @@
+# PostgreSQL
+# ------------------------------------------------------------------------------
+POSTGRES_HOST=postgres
+POSTGRES_PORT=5432
+POSTGRES_DB=expense_tracker
+POSTGRES_USER=UwTvPDGsQCypjFLsYcQdhSdLQzeHNeFu
+POSTGRES_PASSWORD=IRuyKXEsOJogi5MNW2VbwXtbCKEtcIOPizanP1vKG0zUyuZFtDCxan0BsKT9iDms
