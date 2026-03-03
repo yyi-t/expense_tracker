@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}
+  Record:
+  {{ record.name }}
+{% endblock title %}
+{% block content %}
+  <div class="container row pt-4">
+    <div class="col">
+      <h6 class="text-muted">Name</h6>
+      <p>{{ record.name }}</p>
+      <h6 class="text-muted">Date</h6>
+      <p>{{ record.date|date:'d-m-Y' }}</p>
+      <h6 class="text-muted">Description</h6>
+      <p>{{ record.description|default:"-" }}</p>
+      <h6 class="text-muted">Category</h6>
+      <p>{{ record.category }}</p>
+      <h6 class="text-muted">Amount</h6>
+      <p>{{ record.amount }}</p>
+    </div>
+  </div>
+  <a class="btn btn-primary" href="{% url 'tracker:record-list' %}">Back</a>
+{% endblock content %}
