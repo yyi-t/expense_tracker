@@ -1,10 +1,10 @@
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 
+from expense_tracker.tracker.api.serializers import RecordCreateSerializer
+from expense_tracker.tracker.api.serializers import RecordSerializer
+from expense_tracker.tracker.api.serializers import RecordUpdateSerializer
 from expense_tracker.tracker.models import Record
-from expense_tracker.tracker.serializers import RecordCreateSerializer
-from expense_tracker.tracker.serializers import RecordSerializer
-from expense_tracker.tracker.serializers import RecordUpdateSerializer
 
 
 class RecordView(generics.ListCreateAPIView):
