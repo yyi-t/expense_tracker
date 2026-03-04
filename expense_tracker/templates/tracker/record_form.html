@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+  <form method="post" class="pb-4">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save record</button>
+  </form>
+  <a class="btn btn-primary" href="{% url 'tracker:record-list' %}">Back</a>
+{% endblock content %}

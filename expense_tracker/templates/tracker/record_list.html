@@ -6,7 +6,10 @@
   Record list
 {% endblock title %}
 {% block content %}
-  <h1>Records</h1>
+  <div class="d-flex justify-content-between">
+    <h1>Records</h1>
+    <a class="btn btn-primary mb-2" href="{% url 'tracker:record-create' %}">Add new record</a>
+  </div>
   <div class="card card-body">
     <form method="get">
       {{ RecordFilter.form.as_p }}
