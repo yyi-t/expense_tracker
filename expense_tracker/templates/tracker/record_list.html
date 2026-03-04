@@ -7,11 +7,18 @@
 {% endblock title %}
 {% block content %}
   <h1>Records</h1>
+  <div class="card card-body">
+    <form method="get">
+      {{ RecordFilter.form.as_p }}
+      <button class="btn-primary" type="submit">Search</button>
+    </form>
+  </div>
   <table class="table">
     <thead>
       <tr>
         <th scope="col">Date</th>
         <th scope="col">Name</th>
+        <th scope="col">Category</th>
         <th scope="col" class="text-end">Amount</th>
         <th scope="col">Detail</th>
       </tr>
@@ -21,6 +28,7 @@
         <tr>
           <td>{{ record.date|date:'d-m-Y' }}</td>
           <td>{{ record.name }}</td>
+          <td>{{ record.category.name }}</td>
           <td class="text-end">{{ record.amount }}</td>
           <td>
             <a href="{% url 'tracker:record-detail' record.pk %}">view</a>

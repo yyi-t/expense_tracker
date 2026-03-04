@@ -1,6 +1,7 @@
 from django.views.generic import TemplateView
 from django.views.generic.detail import DetailView
 
+from expense_tracker.tracker.filters import RecordFilter
 from expense_tracker.tracker.models import Record
 
 
@@ -9,9 +10,12 @@ class RecordListView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["records"] = []
+        records = []
         if self.request.user.is_authenticated:
-            context["records"] = Record.objects.filter(user=self.request.user)
+            records = Record.objects.filter(user=self.request.user)
+        f = RecordFilter(self.request.GET, queryset=records)
+        context["RecordFilter"] = f
+        context["records"] = f.qs
         return context
 
 
@@ -21,6 +25,5 @@ class RecordDetailView(DetailView):
     context_object_name = "record"
 
     def get_queryset(self):
-        # Get the base queryset
         queryset = super().get_queryset()
         return queryset.filter(user=self.request.user)
