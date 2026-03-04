@@ -14,14 +14,27 @@ services:
       - postgres
       - redis
     volumes:
-      - /app/.venv
+      # - /app/.venv
       - .:/app:z
+    environment:
+      - SITE_PORT=8000
+      - PYTHONPATH=/app
     env_file:
       - ./.envs/.local/.django
       - ./.envs/.local/.postgres
     ports:
       - '8000:8000'
     command: /start
+
+  django_stable:
+    <<: *django
+    container_name: expense_tracker_django_stable
+    volumes: []
+    environment:
+      - SITE_PORT=8001
+      - PYTHONPATH=/app
+    ports:
+      - '8001:8000'
 
   postgres:
     build:
