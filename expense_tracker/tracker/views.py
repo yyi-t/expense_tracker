@@ -14,7 +14,7 @@ class RecordListView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        records = []
+        records = Record.objects.none()
         if self.request.user.is_authenticated:
             records = Record.objects.filter(user=self.request.user).order_by(
                 "-date",
@@ -25,6 +25,11 @@ class RecordListView(TemplateView):
         context["RecordFilter"] = f
         context["records"] = f.qs
         return context
+
+    def get_template_names(self):
+        if self.request.user.is_authenticated:
+            return ["tracker/record_list.html"]
+        return ["tracker/user_login.html"]
 
 
 class RecordCreateView(CreateView):
@@ -37,6 +42,11 @@ class RecordCreateView(CreateView):
         form.instance.user = self.request.user
         return super().form_valid(form)
 
+    def get_template_names(self):
+        if self.request.user.is_authenticated:
+            return ["tracker/record_form.html"]
+        return ["tracker/user_login.html"]
+
 
 class RecordDetailView(DetailView):
     model = Record
@@ -45,7 +55,9 @@ class RecordDetailView(DetailView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        return queryset.filter(user=self.request.user)
+        if self.request.user.is_authenticated:
+            return queryset.filter(user=self.request.user)
+        return Record.objects.none()
 
 
 class RecordUpdateView(UpdateView):
@@ -53,3 +65,9 @@ class RecordUpdateView(UpdateView):
     form_class = RecordForm
     template_name = "tracker/record_form.html"
     success_url = reverse_lazy("tracker:record-list")
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        if self.request.user.is_authenticated:
+            return queryset.filter(user=self.request.user)
+        return Record.objects.none()
