@@ -1,0 +1,61 @@
+[
+  {
+    "model": "tracker.RecordCategory",
+    "pk": 1,
+    "fields": {
+      "name": "Eat outs",
+      "description": "food, drinks",
+      "slug_name": "Eat outs"
+    }
+  },
+  {
+    "model": "tracker.RecordCategory",
+    "pk": 2,
+    "fields": {
+      "name": "Utilities",
+      "description": "electricity, water bills",
+      "slug_name": "Utilities"
+    }
+  },
+  {
+    "model": "tracker.RecordCategory",
+    "pk": 3,
+    "fields": {
+      "name": "Transport",
+      "description": "Petrol, car services, public transport",
+      "slug_name": "Transport"
+    }
+  },
+  {
+    "model": "tracker.RecordCategory",
+    "pk": 4,
+    "fields": {
+      "name": "Travel",
+      "slug_name": "Travel"
+    }
+  },
+  {
+    "model": "tracker.RecordCategory",
+    "pk": 5,
+    "fields": {
+      "name": "Grocery",
+      "slug_name": "Grocery"
+    }
+  },
+  {
+    "model": "tracker.RecordCategory",
+    "pk": 6,
+    "fields": {
+      "name": "Entertainment",
+      "slug_name": "Entertainment"
+    }
+  },
+  {
+    "model": "tracker.RecordCategory",
+    "pk": 7,
+    "fields": {
+      "name": "Subscription",
+      "slug_name": "Subscription"
+    }
+  }
+]
