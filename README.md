@@ -44,7 +44,7 @@ docker compose -f docker-compose.local.yml run --rm django pytest
     - expected data: username, password
     - expected result: token
 #### Record API
-- allows list, detail, delete, patch and put record using user's token by having `Authorization: Token \<token\>`
+- allows list, detail, delete, patch and put record using user's token by having `Authorization: Token <token>`
 1. GET `api/record/`
     - gets a list of record
     - expected result:
@@ -96,12 +96,12 @@ docker compose -f docker-compose.local.yml run --rm django pytest
 
 ### Record Page
 - only accessible for logged in user
-#### /tracker/record
+#### /tracker/record/
 - contains the list of tracker and allows filtering the list of records
 - allows user to add new record and view record.
 ![record_main](https://github.com/yyi-t/expense_tracker/blob/master/docs/Images/record_page_main.jpg)
 
-#### /tracker/record/add
+#### /tracker/record/add/
 - allow user to add record
 ![record_add](https://github.com/yyi-t/expense_tracker/blob/master/docs/Images/record_page_add.jpg)
 
@@ -109,6 +109,6 @@ docker compose -f docker-compose.local.yml run --rm django pytest
 - allow user to view record details and edit it
 ![record_detail](https://github.com/yyi-t/expense_tracker/blob/master/docs/Images/record_page_detail.jpg)
 
-#### /tracker/record/\<pk\>/edit
+#### /tracker/record/\<pk\>/edit/
 - allow user to edit the record
 ![record_detail_edit](https://github.com/yyi-t/expense_tracker/blob/master/docs/Images/record_page_detail_edit.jpg)
