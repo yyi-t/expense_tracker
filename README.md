@@ -92,23 +92,23 @@ docker compose -f docker-compose.local.yml run --rm django pytest
 
 ### Django Admin
 - user with admin rights can view all data in the app
-![django_admin](docs\Images\django_admin.jpg)
+![django_admin](https://github.com/yyi-t/expense_tracker/blob/master/docs/Images/django_admin.jpg)
 
 ### Record Page
 - only accessible for logged in user
 #### /tracker/record
 - contains the list of tracker and allows filtering the list of records
 - allows user to add new record and view record.
-![record_main](docs\Images\record_page_main.jpg)
+![record_main](https://github.com/yyi-t/expense_tracker/blob/master/docs/Images/record_page_main.jpg)
 
 #### /tracker/record/add
 - allow user to add record
-![record_add](docs\Images\record_page_add.jpg)
+![record_add](https://github.com/yyi-t/expense_tracker/blob/master/docs/Images/record_page_add.jpg)
 
 #### /tracker/record/\<pk\>/
 - allow user to view record details and edit it
-![record_detail](docs\Images\record_page_detail.jpg)
+![record_detail](https://github.com/yyi-t/expense_tracker/blob/master/docs/Images/record_page_detail.jpg)
 
 #### /tracker/record/\<pk\>/edit
 - allow user to edit the record
-![record_detail_edit](docs\Images\record_page_detail_edit.jpg)
+![record_detail_edit](https://github.com/yyi-t/expense_tracker/blob/master/docs/Images/record_page_detail_edit.jpg)
