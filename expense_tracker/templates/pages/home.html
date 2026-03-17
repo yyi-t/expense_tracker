@@ -1,1 +1,13 @@
 {% extends "base.html" %}
+
+{% block content %}
+  {% if request.user.is_authenticated %}
+    <p>
+      Go to <a href="{% url 'tracker:record-list' %}">record page</a> to view your records
+    </p>
+  {% else %}
+    <p>
+      <a href="{% url 'account_login' %}">Sign in</a> to view your records
+    </p>
+  {% endif %}
+{% endblock content %}
